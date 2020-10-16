@@ -1,0 +1,30 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "Vanilla Node.js REST API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "eslint ./",
+    "lint": "eslint ./",
+    "lint:fix": "eslint ./ --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mezgoodle/async_server.git"
+  },
+  "keywords": [
+    "node",
+    "rest-api",
+    "vanillajs"
+  ],
+  "author": "Maxim Zavalniuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mezgoodle/async_server/issues"
+  },
+  "homepage": "https://github.com/mezgoodle/async_server#readme",
+  "devDependencies": {
+    "eslint": "^7.11.0"
+  }
+}
