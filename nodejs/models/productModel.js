@@ -1,6 +1,7 @@
 'use strict';
 
 const products = require('../data/products.json');
+const { writeDataToFile, getRandomInt } = require('../utils');
 
 const findAll = () => {
   return new Promise((resolve, reject) => {
@@ -15,7 +16,18 @@ const findById = (id) => {
   })
 }
 
+const create = (product) => {
+  return new Promise((resolve, reject) => {
+    const maxId = 10000;
+    const newProduct = {id: getRandomInt(maxId), ...product};
+    products.push(newProduct);
+    writeDataToFile('./data/products.json', products);
+    resolve(newProduct);
+  })
+}
+
 module.exports = {
   findAll,
   findById,
+  create,
 }
