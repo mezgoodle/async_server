@@ -16,20 +16,26 @@ const create = product => new Promise((resolve, reject) => {
   const maxId = 10000;
   const newProduct = { id: getRandomInt(maxId), ...product };
   products.push(newProduct);
-  writeDataToFile('./data/products.json', products);
+  if (process.env.NODE_ENV !== 'test') {
+    writeDataToFile('./data/products.json', products);
+  }
   resolve(newProduct);
 });
 
 const update = (id, product) => new Promise((resolve, reject) => {
   const index = products.findIndex(p => p.id === id);
   products[index] = { id, ...product };
-  writeDataToFile('./data/products.json', products);
+  if (process.env.NODE_ENV !== 'test') {
+    writeDataToFile('./data/products.json', products);
+  }
   resolve(products[index]);
 });
 
 const remove = id => new Promise((resolve, reject) => {
   products = products.filter(p => p.id !== id);
-  writeDataToFile('./data/products.json', products);
+  if (process.env.NODE_ENV !== 'test') {
+    writeDataToFile('./data/products.json', products);
+  }
   resolve();
 });
 
