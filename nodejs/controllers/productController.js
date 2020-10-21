@@ -1,6 +1,7 @@
 'use strict';
 
 const Product = require('../models/productModel');
+const { getPostData } = require('../utils');
 
 // @desc Get All Products
 // @route GET /api/products
@@ -38,26 +39,20 @@ async function getProduct(req, res, id) {
 // @route POST /api/product/
 async function createProduct(req, res) {
   try {
-    let body = '';
+    const body = await getPostData(req);
 
-    req.on('data', (chunk) => {
-      body += chunk.toString()
-    })
-    req.on('end', async () => {
-      const { title, description, price } = JSON.parse(body);
+    const { title, description, price } = JSON.parse(body);
 
-      const product = {
-        title,
-        description,
-        price,
-      };
+    const product = {
+      title,
+      description,
+      price,
+    };
 
-      const newProduct = await Product.create(product);
+    const newProduct = await Product.create(product);
 
-      res.writeHead(201, { 'Content-Type': 'application/json' });
-      return res.end(JSON.stringify(newProduct));
-    })
-
+    res.writeHead(201, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify(newProduct));
   } catch (error) {
     console.error(error);
   }
