@@ -38,16 +38,26 @@ async function getProduct(req, res, id) {
 // @route POST /api/product/
 async function createProduct(req, res) {
   try {
-    const product = {
-      title: 'Test product',
-      description: 'This is my product',
-      price: 100,
-    };
+    let body = '';
 
-    const newProduct = await Product.create(product);
+    req.on('data', (chunk) => {
+      body += chunk.toString()
+    })
+    req.on('end', async () => {
+      const { title, description, price } = JSON.parse(body);
 
-    res.writeHead(201, { 'Content-Type': 'application/json' });
-    return res.end(JSON.stringify(newProduct));
+      const product = {
+        title,
+        description,
+        price,
+      };
+
+      const newProduct = await Product.create(product);
+
+      res.writeHead(201, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify(newProduct));
+    })
+
   } catch (error) {
     console.error(error);
   }
