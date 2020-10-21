@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha --timeout 10000",
+    "test": "eslint ./ && mocha --timeout 10000",
+    "unittest": "mocha --timeout 10000",
     "lint": "eslint ./",
     "lint:fix": "eslint ./ --fix"
   },
