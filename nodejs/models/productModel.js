@@ -21,14 +21,14 @@ const create = product => new Promise((resolve, reject) => {
 });
 
 const update = (id, product) => new Promise((resolve, reject) => {
-  const index = products.findIndex((p) => p.id === id);
-  products[index] = {id, ...product};
+  const index = products.findIndex(p => p.id === id);
+  products[index] = { id, ...product };
   writeDataToFile('./data/products.json', products);
   resolve(products[index]);
 });
 
 const remove = id => new Promise((resolve, reject) => {
-  products = products.filter((p) => p.id !== id);
+  products = products.filter(p => p.id !== id);
   writeDataToFile('./data/products.json', products);
   resolve();
 });
