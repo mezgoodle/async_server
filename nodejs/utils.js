@@ -23,7 +23,7 @@ const getPostData = req => new Promise((resolve, reject) => {
       resolve(body);
     });
   } catch (error) {
-    reject(err);
+    reject(error);
   }
 });
 
