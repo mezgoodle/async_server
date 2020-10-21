@@ -1,6 +1,6 @@
 'use strict';
 
-const products = require('../data/products.json');
+let products = require('../data/products.json');
 const { writeDataToFile, getRandomInt } = require('../utils');
 
 const findAll = () => new Promise((resolve, reject) => {
@@ -27,9 +27,16 @@ const update = (id, product) => new Promise((resolve, reject) => {
   resolve(products[index]);
 });
 
+const remove = id => new Promise((resolve, reject) => {
+  products = products.filter((p) => p.id !== id);
+  writeDataToFile('./data/products.json', products);
+  resolve();
+});
+
 module.exports = {
   findAll,
   findById,
   create,
   update,
+  remove,
 };
