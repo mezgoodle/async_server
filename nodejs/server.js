@@ -21,7 +21,7 @@ const server = http.createServer((req, res) => {
    req.method === 'PUT') {
     const id = req.url.split('/')[3];
     updateProduct(req, res, id);
-  } else if (req.url.match(/\/api\/products\/\w+//) &&
+  } else if (req.url.match(/\/api\/products\/\w+/) &&
   req.method === 'DELETE') {
     const id = req.url.split('/')[3];
     deleteProduct(req, res, id);
