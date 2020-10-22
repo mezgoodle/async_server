@@ -1,66 +1,47 @@
-import socket
+import asyncio
 import sys
-import time
-import threading
 
-def run_server(port=53210):
-    serv_sock = create_serv_sock(port)
-    cid = 0
-    while True:
-        client_sock = accept_client_conn(serv_sock, cid)
-        t = threading.Thread(target=serve_client,
-                                args=(client_sock, cid))
-        t.start()
-        cid += 1
+counter = 0
 
-def serve_client(client_sock, cid):
-    request = read_request(client_sock)
+async def run_server(host, port):
+    server = await asyncio.start_server(serve_client, host, port)
+    await server.serve_forever()
+
+async def serve_client(reader, writer):
+    global counter
+    cid = counter
+    counter += 1
+    print(f'Client #{cid} connected')
+
+    request = await read_request(reader)
     if request is None:
         print(f'Client #{cid} unexpectedly disconnected')
     else:
-        response = handle_request(request)
-        write_response(client_sock, response, cid)
+        response = await handle_request(request)
+        await write_response(writer, response, cid)
 
-def create_serv_sock(serv_port):
-    serv_sock = socket.socket(socket.AF_INET,
-                            socket.SOCK_STREAM,
-                            proto=0)
-    serv_sock.bind(('', serv_port))
-    serv_sock.listen()
-    return serv_sock
-
-def accept_client_conn(serv_sock, cid):
-    client_sock, client_addr = serv_sock.accept()
-    print(f'Client #{cid} connected '
-        f'{client_addr[0]}:{client_addr[1]}')
-    return client_sock
-
-def read_request(client_sock, delimiter=b'!'):
+async def read_request(reader, delimiter=b'!'):
     request = bytearray()
-    try:
-        while True:
-            chunk = client_sock.recv(4)
-            if not chunk:
-                return None
+    while True:
+        chunk = await reader.read(4)
+        if not chunk:
+            break
 
-            request += chunk
-            if delimiter in request:
-                return request
+        request += chunk
+        if delimiter in request:
+            return request
 
-    except ConnectionResetError:
-        return None
-    except:
-        raise
+    return None
 
-def handle_request(request):
-    time.sleep(5)
+async def handle_request(request):
+    await asyncio.sleep(1)
     return request[::-1]
 
-def write_response(client_sock, response, cid):
-    client_sock.sendall(response)
-    client_sock.close()
+async def write_response(writer, response, cid):
+    writer.write(response)
+    await writer.drain()
+    writer.close()
     print(f'Client #{cid} has been served')
 
-
 if __name__ == '__main__':
-    run_server()
+    asyncio.run(run_server('127.0.0.1', 5000))
