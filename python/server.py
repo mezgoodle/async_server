@@ -1,38 +1,25 @@
-import os
 import socket
 import sys
 import time
+import threading
 
 def run_server(port=53210):
     serv_sock = create_serv_sock(port)
-    active_children = set()
     cid = 0
     while True:
         client_sock = accept_client_conn(serv_sock, cid)
-        child_pid = serve_client(client_sock, cid)
-        active_children.add(child_pid)
-        reap_children(active_children)
+        t = threading.Thread(target=serve_client,
+                                args=(client_sock, cid))
+        t.start()
         cid += 1
 
 def serve_client(client_sock, cid):
-    child_pid = os.fork()
-    if child_pid:
-        client_sock.close()
-        return child_pid
-
     request = read_request(client_sock)
     if request is None:
         print(f'Client #{cid} unexpectedly disconnected')
     else:
         response = handle_request(request)
         write_response(client_sock, response, cid)
-    os._exit(0)
-
-def reap_children(active_children):
-    for child_pid in active_children.copy():
-        child_pid, _ = os.waitpid(child_pid, os.WNOHANG)
-        if child_pid:
-            active_children.discard(child_pid)
 
 def create_serv_sock(serv_port):
     serv_sock = socket.socket(socket.AF_INET,
