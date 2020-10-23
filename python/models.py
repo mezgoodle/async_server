@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-DB_URI = 'sqlite:///../data/data.db'
+DB_URI = 'sqlite:///./data/data.db'
 
 Session = sessionmaker(
     autocommit=False,
