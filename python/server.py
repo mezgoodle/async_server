@@ -1,15 +1,15 @@
 from aiohttp.web import Application, run_app
 
-from . import controller
-from . import models
+from controller import RestResource
+from models import Note
 from sqlalchemy import engine_from_config
 
 
 notes = {}
 app = Application()
-person_resource = controller.RestResource(
+person_resource = RestResource(
     'notes',
-    models.Note,
+    Note,
     notes,
     ('title',
      'description',

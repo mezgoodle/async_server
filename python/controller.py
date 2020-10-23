@@ -2,7 +2,7 @@ import inspect
 import json
 import os
 from collections import OrderedDict
-from . import models
+from models import session, Note
 from aiohttp.http_exceptions import HttpBadRequest
 from aiohttp.web_exceptions import HTTPMethodNotAllowed
 from aiohttp.web import Request, Response
