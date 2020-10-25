@@ -46,7 +46,7 @@ CityIn_Pydantic = pydantic_model_creator(City, name='CityIn', exclude_readonly=T
 
 @app.get('/')
 def index():
-    return {'msg' : 'hello world'}
+    return {'msg' : 'Hello world!'}
 
 @app.get('/cities')
 async def get_cities():
