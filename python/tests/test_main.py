@@ -23,25 +23,12 @@ async def test_failure():
 @pytest.mark.asyncio
 async def test_cities():
     async with AsyncClient(app=app, base_url='http://test') as ac:
-        response = await ac.get('/cities')
+        response = await ac.get('/cities.3')
     assert response.status_code == 200
-    assert response.json() == [
+    assert response.json() ==
   {
     "id": 3,
     "name": "Adak",
     "timezone": "America/Adak",
-    "current_time": "2020-10-25T00:00:16.304182-09:00"
+    "current_time": ""
   },
-  {
-    "id": 4,
-    "name": "Yellowknife",
-    "timezone": "America/Yellowknife",
-    "current_time": "2020-10-25T03:00:16.352230-06:00"
-  },
-  {
-    "id": 5,
-    "name": "Amsterdam",
-    "timezone": "Europe/Amsterdam",
-    "current_time": "2020-10-25T10:00:16.352080+01:00"
-  }
-]
