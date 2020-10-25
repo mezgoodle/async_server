@@ -18,10 +18,3 @@ async def test_failure():
         response = await ac.get('/city')
     assert response.status_code == 404
     assert response.json() == {"detail":"Not Found"}
-
-
-@pytest.mark.asyncio
-async def test_cities():
-    async with AsyncClient(app=app, base_url='http://test') as ac:
-        response = await ac.get('/cities/3')
-    assert response.status_code == 200
