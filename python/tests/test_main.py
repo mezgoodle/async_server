@@ -23,7 +23,7 @@ async def test_failure():
 @pytest.mark.asyncio
 async def test_cities():
     async with AsyncClient(app=app, base_url='http://test') as ac:
-        response = await ac.get('/cities.3')
+        response = await ac.get('/cities/3')
     assert response.status_code == 200
     assert response.json() == {
     "id": 3,
