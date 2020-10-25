@@ -1,4 +1,4 @@
-from fastapi import FastAPI 
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 from tortoise import fields
@@ -13,14 +13,17 @@ app = FastAPI()
 
 session = None
 
+
 @app.on_event('startup')
 async def startup_event():
     global session
     session = aiohttp.ClientSession()
 
+
 @app.on_event('shutdown')
 async def shutdown_event():
     await session.close()
+
 
 class City(Model):
     id = fields.IntField(pk=True)
@@ -37,16 +40,18 @@ class City(Model):
             current_time = result['datetime']
             obj.current_time = current_time
 
-
     class PydanticMeta:
         computed = ('current_time', )
+
 
 City_Pydantic = pydantic_model_creator(City, name='City')
 CityIn_Pydantic = pydantic_model_creator(City, name='CityIn', exclude_readonly=True)
 
+
 @app.get('/')
 def index():
-    return {'msg' : 'Hello world!'}
+    return {'msg': 'Hello world!'}
+
 
 @app.get('/cities')
 async def get_cities():
@@ -59,14 +64,17 @@ async def get_cities():
     await asyncio.gather(*tasks)
     return cities
 
+
 @app.get('/cities/{city_id}')
 async def get_city(city_id: int):
     return await City_Pydantic.from_queryset_single(City.get(id=city_id))
+
 
 @app.post('/cities')
 async def create_city(city: CityIn_Pydantic):
     city_obj = await City.create(**city.dict(exclude_unset=True))
     return await City_Pydantic.from_tortoise_orm(city_obj)
+
 
 @app.delete('/cities/{city_id}')
 async def delete_city(city_id: int):
