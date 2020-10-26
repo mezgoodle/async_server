@@ -1,9 +1,9 @@
+
 package main
 
 import (
 	"fmt"
 	"net/http"
-	"time"
 )
 
 func main() {
@@ -15,19 +15,37 @@ func main() {
 		"https://wizzair.com/",
 		"https://www.swiss.com/",
 	}
+
+	c := make(chan urlStatus)
 	for _, url := range urls {
-		// Call the function check
-		go checkUrl(url)
+		go checkURL(url, c)
+
 	}
-	time.Sleep(5 * time.Second)
+	result := make([]urlStatus, len(urls))
+	for i := range result {
+		result[i] = <-c
+		if result[i].status {
+			fmt.Println(result[i].url, "is up.")
+		} else {
+			fmt.Println(result[i].url, "is down !!")
+		}
+	}
+
 }
 
 //checks and prints a message if a website is up or down
-func checkUrl(url string) {
+func checkURL(url string, c chan urlStatus) {
 	_, err := http.Get(url)
 	if err != nil {
-		fmt.Println(url, "is down !!!")
-		return
+		// The website is down
+		c <- urlStatus{url, false}
+	} else {
+		// The website is up
+		c <- urlStatus{url, true}
 	}
-	fmt.Println(url, "is up and running.")
+}
+
+type urlStatus struct {
+	url    string
+	status bool
 }
