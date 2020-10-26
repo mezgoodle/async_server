@@ -13,6 +13,8 @@ func main() {
 		"https://www.ryanair.com",
 		"https://wizzair.com/",
 		"https://www.swiss.com/",
+		"http://localhost:5000",
+		"https://google.com",
 	}
 
 	c := make(chan urlStatus)
@@ -26,7 +28,7 @@ func main() {
 		if result[i].status {
 			fmt.Println(result[i].url, "is up.")
 		} else {
-			fmt.Println(result[i].url, "is down !!")
+			fmt.Println(result[i].url, "is down!!!")
 		}
 	}
 }
