@@ -29,7 +29,6 @@ func main() {
 			fmt.Println(result[i].url, "is down !!")
 		}
 	}
-
 }
 
 // checks and prints a message if a website is up or down
@@ -48,3 +47,4 @@ type urlStatus struct {
 	url    string
 	status bool
 }
+
