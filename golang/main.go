@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -33,7 +32,7 @@ func main() {
 
 }
 
-//checks and prints a message if a website is up or down
+// checks and prints a message if a website is up or down
 func checkURL(url string, c chan urlStatus) {
 	_, err := http.Get(url)
 	if err != nil {
