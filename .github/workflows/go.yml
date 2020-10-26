@@ -30,8 +30,8 @@ jobs:
         fi
     - name: Test
       run: echo Hello World!
-    # - name: Build
-    #   run: go build -v .
+    - name: Build
+      run: go build -v .
 
     # - name: Test
     #   run: go test -v .
