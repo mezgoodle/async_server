@@ -6,7 +6,18 @@ Hello everyone! This is the part of my **async_server** repository with _JavaScr
 
 ## Table of contents
 
-
+- [Motivation](#motivation)
+- [Build status](#build-status)
+- [Badges](#badges)
+- [Features](#features)
+- [Code Example](#code-example)
+- [Installation](#installation)
+- [Fast usage](#fast-usage)
+- [API Reference](#api-reference)
+- [Tests](#tests)
+- [Contribute](#contribute)
+- [Credits](#credits)
+- [License](#license)
 
 ## Motivation
 
