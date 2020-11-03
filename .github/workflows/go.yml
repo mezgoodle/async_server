@@ -32,6 +32,3 @@ jobs:
       run: echo Hello World!
     - name: Build
       run: cd golang && go build -v .
-
-    # - name: Test
-    #   run: go test -v .
