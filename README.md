@@ -2,6 +2,8 @@
 
 Asynchronous programming on different languages
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/cf6963e1e54d48a79bff920f8103a8fa)](https://www.codacy.com/gh/mezgoodle/async_server/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mezgoodle/async_server&amp;utm_campaign=Badge_Grade)
+
 ## Motivation
 
 I needed to do a project with async programming for my lessons. I decided to do server, then thought to do that with different languages. So you can find solutions here:
