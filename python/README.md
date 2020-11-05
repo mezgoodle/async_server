@@ -15,9 +15,7 @@ Hello everyone! This is the part of my **async_server** repository with _Python_
 - [Fast usage](#fast-usage)
 - [API Reference](#api-reference)
 - [Tests](#tests)
-- [Contribute](#contribute)
 - [Credits](#credits)
-- [License](#license)
 
 ## Motivation
 
@@ -115,10 +113,6 @@ DELETE | `/cities/:id` | `id` | `200`  | delete a city
 
 All tests are in [test](https://github.com/mezgoodle/async_server/blob/master/python/tests/test_main.py) folder. I'm using [pytest](https://docs.pytest.org/en/stable/) and [httpx](https://github.com/encode/httpx).
 
-## Contribute
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Also look at the [CONTRIBUTING.md](https://github.com/mezgoodle/async_server/blob/master/CONTRIBUTING.md).
-
 ## Credits
 
 Links to resources which inspired me to build this project:
@@ -130,7 +124,3 @@ Links to resources which inspired me to build this project:
 - [FastAPI tutorial](https://www.youtube.com/watch?v=BalvzyKg_4k&feature=youtu.be)
 
 - [FastAPI testing](https://fastapi.tiangolo.com/advanced/async-tests/#pytest-asyncio)
-
-## License
-
-MIT © [mezgoodle](https://github.com/mezgoodle)

@@ -12,9 +12,7 @@ Hello everyone! This is the part of my **async_server** repository with _GoLang_
 - [Features](#features)
 - [Installation](#installation)
 - [Fast usage](#fast-usage)
-- [Contribute](#contribute)
 - [Credits](#credits)
-- [License](#license)
 
 ## Motivation
 
@@ -55,16 +53,8 @@ cd golang
 go run main.go
 ```
 
-## Contribute
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Also look at the [CONTRIBUTING.md](https://github.com/mezgoodle/async_server/blob/master/CONTRIBUTING.md).
-
 ## Credits
 
 Links to resources which inspired me to build this project:
 
 - [Article](https://medium.com/@gauravsingharoy/asynchronous-programming-with-go-546b96cd50c1) about go-routines with Go on [Medium](https://medium.com/).
-
-## License
-
-MIT © [mezgoodle](https://github.com/mezgoodle)

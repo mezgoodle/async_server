@@ -15,9 +15,7 @@ Hello everyone! This is the part of my **async_server** repository with _JavaScr
 - [Fast usage](#fast-usage)
 - [API Reference](#api-reference)
 - [Tests](#tests)
-- [Contribute](#contribute)
 - [Credits](#credits)
-- [License](#license)
 
 ## Motivation
 
@@ -147,10 +145,6 @@ DELETE | `/api/products/:id` | `id` | `200`  | delete a product
 
 All tests are in [test](https://github.com/mezgoodle/async_server/blob/master/nodejs/test/products.js) folder. I'm using [mocha](https://github.com/mochajs/mocha) and [chai](https://github.com/chaijs/chai) with [chai-http](https://github.com/chaijs/chai-http).
 
-## Contribute
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Also look at the [CONTRIBUTING.md](https://github.com/mezgoodle/async_server/blob/master/CONTRIBUTING.md).
-
 ## Credits
 
 Links to resources which inspired me to build this project:
@@ -160,7 +154,3 @@ Links to resources which inspired me to build this project:
 - [Article about testing](https://habr.com/ru/post/308352/)
 
 - [Mocha and Chai testing](https://www.youtube.com/watch?v=MLTRHc5dk6s)
-
-## License
-
-MIT © [mezgoodle](https://github.com/mezgoodle)
