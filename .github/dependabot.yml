@@ -1,6 +1,13 @@
 version: 2
 updates:
-  - package-ecosystem: "pip, npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+
+  # Maintain dependencies for pip
+  - package-ecosystem: "pip"
+    directory: "/"
     schedule:
       interval: "daily"
